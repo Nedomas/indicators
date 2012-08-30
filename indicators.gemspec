@@ -4,9 +4,9 @@ require File.expand_path('../lib/indicators/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Nedomas"]
   gem.email         = ["domas.bitvinskas@me.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{A gem for calculating technical analysis indicators.}
+  gem.summary       = %q{A gem for calculating technical analysis indicators.}
+  gem.homepage      = "http://github.com/Nedomas/indicators"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "indicators"
   gem.require_paths = ["lib"]
   gem.version       = Indicators::VERSION
+
+  gem.add_dependency 'rails'
+  gem.add_development_dependency 'securities'
+  gem.add_development_dependency 'rspec'
 end
