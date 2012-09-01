@@ -2,8 +2,6 @@
 
 A gem for calculating technical analysis indicators.
 
-[![Build Status](https://secure.travis-ci.org/Nedomas/indicators.png)](http://travis-ci.org/Nedomas/indicators)
-
 Current functionality demo of Indicators and Securities gems synergy can be tested at http://strangemuseum.heroku.com.
 
 ## Installation
