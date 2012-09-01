@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Accepted Input
 
-* Array
+# Array
 
 	my_data = Indicators::Data.new([1, 2, 3, 4, 5])
 
@@ -30,7 +30,7 @@ Then it returns data as an array with indicator values in index places:
 
 	i.e. my_data.calc(:type => :sma, :variables => 2) => [nil, 1.5, 2.5, 3.5, 4.5]
 
-* Securities gem hash
+# Securities gem hash
 
 	my_data = Indicators::Data.new(Securities::Stock.new(["aapl", "yhoo"]).history(:start_date => '2012-08-25', :end_date => '2012-08-30').results)
 
@@ -40,15 +40,15 @@ Then it returns a hash so it can be quite powerful at calculating multiple stock
 
 ## Supported Indicators
 
-* Simple Moving Average => :sma
+# Simple Moving Average => :sma
 
 	my_data.calc(:type => :sma, :variables => 5)
 
-*	Exponental Moving Average => :ema
+#	Exponental Moving Average => :ema
 
 	my_data.calc(:type => :ema, :variables => 5)
 
-* Bollinger Bands => :bb
+# Bollinger Bands => :bb
 
 	my_data.calc(:type => :bb, :variables => [15, 3])
 
@@ -57,7 +57,7 @@ Variables have to be specified as an array [periods, multiplier]. If multiplier 
 	It returns output as an array for each data point [middle band, upper band, lower band].
 	i.e. my_data.calc(:type => :bb, :variables => 3) => {"aapl"=>[nil, nil, [674.65, 676.8752190903368, 672.4247809096631]]} 
 
-* Moving Average Convergence Divergence => :macd
+# Moving Average Convergence Divergence => :macd
 
 	my_data.calc(:type => :macd, :variables => [12, 26, 9])
 
@@ -65,17 +65,22 @@ Variables have to be specified as an array [faster periods, slower periods, sign
 
 	MACD output is [MACD line, signal line, MACD histogram].
 
+# Relative Strength Index => :rsi
+
+	my_data.calc(:type => :rsi, :variables => 14)
+
+The more data it has, the more accurate RSI is.
+
 ## To Do
 
-* Fix MACD period validation.
+* Make defaults mechanism more versatile.
 * Write specs.
 * More validations.
 * A strategy backtesting tool.
 
-Indicators:
+# Indicators:
 * More moving averages (CMA, WMA, MMA).
 * ROC.
-* RSI.
 * CCI.
 * Stochastics.
 
