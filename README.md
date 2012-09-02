@@ -4,6 +4,8 @@ A gem for calculating technical analysis indicators.
 
 Current functionality demo of Indicators and Securities gems synergy can be tested at http://strangemuseum.heroku.com.
 
+[![Build Status](https://secure.travis-ci.org/Nedomas/indicators.png)](http://travis-ci.org/Nedomas/indicators)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -69,6 +71,14 @@ Variables have to be specified as an array [faster periods, slower periods, sign
 
 The more data it has, the more accurate RSI is.
 
+# Full Stochastic Oscillator => :sto
+
+	my_data.calc(:type => :sto, :variables => [14, 3, 5])
+
+Variables have to be specified as an array [lookback period, the number of periods to slow %K, the number of periods for the %D moving average] => [%K1, %K2, %D].
+
+	Stochastic output is [fast %K, slow %K, full %D].
+
 ## To Do
 
 * Make defaults mechanism more versatile.
@@ -80,7 +90,10 @@ The more data it has, the more accurate RSI is.
 * More moving averages (CMA, WMA, MMA).
 * ROC.
 * CCI.
-* Stochastics.
+* Williams %R.
+* ADX.
+* Parabolic SAR.
+* StochRSI.
 
 ## Contributing
 
