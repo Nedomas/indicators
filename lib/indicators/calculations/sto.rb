@@ -14,13 +14,11 @@
     #
     # Input 14, 3, 5
     # Returns [full %K, full %D]
-    def initialize data, parameters
-      @output_abbr = "STO"
-      @params = Array.new
-      @params[0] = k1_periods = Indicators::Helper.get_parameters(parameters, 0, 14)
-      @params[1] = k2_periods = Indicators::Helper.get_parameters(parameters, 1, 3)
-      @params[2] = d_periods = Indicators::Helper.get_parameters(parameters, 2, 3)
-      @output = Array.new
+    def self.calculate data, parameters
+      k1_periods = parameters[0]
+      k2_periods = parameters[1]
+      d_periods = parameters[2]
+      output = Array.new
       adj_closes = Indicators::Helper.validate_data(data, :adj_close, k1_periods)
       highs = Indicators::Helper.validate_data(data, :high, k1_periods)
       lows = Indicators::Helper.validate_data(data, :low, k1_periods)
@@ -33,20 +31,22 @@
         if index+1 >= k1_periods
           k1[index] = (adj_close - lows[start..index].min) / (highs[start..index].max - lows[start..index].min) * 100
           if index+2 >= k1_periods + k2_periods
-            k2[index] = Indicators::Sma.new(k1[(k1_periods-1)..index], k2_periods).output.last
+            k2[index] = Indicators::Sma.calculate(k1[(k1_periods-1)..index], k2_periods).last
           else 
             k2[index] = nil
           end
           if index+3 >= k1_periods + k2_periods + d_periods
-            d[index] = Indicators::Sma.new(k2[(k1_periods + k2_periods - 2)..index], d_periods).output.last
+            d[index] = Indicators::Sma.calculate(k2[(k1_periods + k2_periods - 2)..index], d_periods).last
           else
             d[index] = nil
           end
         else
           k1[index] = nil
         end
-        @output[index] = [k1[index], k2[index], d[index]]
+        output[index] = [k1[index], k2[index], d[index]]
       end
+
+      return output
 
     end
 

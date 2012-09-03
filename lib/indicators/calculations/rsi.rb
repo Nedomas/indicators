@@ -11,11 +11,9 @@
     # First Average Loss = Sum of Losses over the past 14 periods / 14
     # Average Gain = [(previous Average Gain) x 13 + current Gain] / 14.
     # Average Loss = [(previous Average Loss) x 13 + current Loss] / 14.
-    def initialize data, parameters
-      @output_abbr = "RSI"
-      @params = Array.new
-      @params = periods = Indicators::Helper.get_parameters(parameters, 0, 14)
-      @output = Array.new
+    def self.calculate data, parameters
+      periods = parameters
+      output = Array.new
       adj_closes = Indicators::Helper.validate_data(data, :adj_close, periods)
 
       rs = Array.new
@@ -39,22 +37,25 @@
             average_loss = (average_loss * (periods-1) + current_loss) / periods
           end
           rs[index] = average_gain / average_loss
-          @output[index] = 100 - 100/(1+rs[index])
+          output[index] = 100 - 100/(1+rs[index])
           if average_gain == 0
-            @output[index] = 0
+            output[index] = 0
           elsif average_loss == 0
-            @output[index] = 100
+            output[index] = 100
           end
         else
           rs[index] = nil
-          @output[index] = nil
+          output[index] = nil
         end
       end
+
+      return output
+
     end
 
     #
     # Helper methods for RSI
-    def gain_or_loss data, type
+    def self.gain_or_loss data, type
       sum = 0.0
       first_value = nil
       data.each do |value|

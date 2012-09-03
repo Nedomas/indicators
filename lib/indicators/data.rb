@@ -35,7 +35,7 @@ module Indicators
 
 			# Check if there is such indicator type supported.
 			case
-				when INDICATORS.include?(parameters[:type]) then @results = Indicators::Main.calculate(@data, parameters)
+				when INDICATORS.include?(parameters[:type]) then @results = Indicators::Main.new(@data, parameters)
 			else 
 				raise DataException, "Invalid indicator type specified (#{parameters[:type]})."
 			end
