@@ -27,7 +27,7 @@ module Indicators
 		def calc parameters
 			# Check is parameters are usable.
 			unless parameters.is_a?(Hash)
-				raise DataException, 'Given parameters have to be a hash. FORMAT: .calc(:type => :ema, :variables => 12)'
+				raise DataException, 'Given parameters have to be a hash. FORMAT: .calc(:type => :ema, :params => 12)'
 			end
 
 			# If not specified, set default :type to :sma.

@@ -2,35 +2,35 @@ module Indicators
 
 	class Main
 
-    attr_reader :output, :output_abbr, :params
+    attr_reader :output, :abbr, :params
     # Error handling.
     class MainException < StandardError
     end
 
 		def initialize data, parameters
       type = parameters[:type]
-      variables = parameters[:variables]
-      @output_abbr = type.to_s.upcase
+      all_params = parameters[:params]
+      @abbr = type.to_s.upcase
       if type == :sma
-        @params = Indicators::Helper.get_parameters(variables, 0, 20)
+        @params = Indicators::Helper.get_parameters(all_params, 0, 20)
       elsif type == :ema
-        @params = Indicators::Helper.get_parameters(variables, 0, 20)
+        @params = Indicators::Helper.get_parameters(all_params, 0, 20)
       elsif type == :bb
         @params = Array.new
-        @params[0] = Indicators::Helper.get_parameters(variables, 0, 20)
-        @params[1] = Indicators::Helper.get_parameters(variables, 1, 2)
+        @params[0] = Indicators::Helper.get_parameters(all_params, 0, 20)
+        @params[1] = Indicators::Helper.get_parameters(all_params, 1, 2)
       elsif type == :macd
         @params = Array.new
-        @params[0] = Indicators::Helper.get_parameters(variables, 0, 12)
-        @params[1] = Indicators::Helper.get_parameters(variables, 1, 26)
-        @params[2] = Indicators::Helper.get_parameters(variables, 2, 9)
+        @params[0] = Indicators::Helper.get_parameters(all_params, 0, 12)
+        @params[1] = Indicators::Helper.get_parameters(all_params, 1, 26)
+        @params[2] = Indicators::Helper.get_parameters(all_params, 2, 9)
       elsif type == :rsi
-        @params = Indicators::Helper.get_parameters(variables, 0, 14)
+        @params = Indicators::Helper.get_parameters(all_params, 0, 14)
       elsif type == :sto
         @params = Array.new
-        @params[0] = Indicators::Helper.get_parameters(variables, 0, 14)
-        @params[1] = Indicators::Helper.get_parameters(variables, 1, 3)
-        @params[2] = Indicators::Helper.get_parameters(variables, 2, 3)
+        @params[0] = Indicators::Helper.get_parameters(all_params, 0, 14)
+        @params[1] = Indicators::Helper.get_parameters(all_params, 1, 3)
+        @params[2] = Indicators::Helper.get_parameters(all_params, 2, 3)
       end
 
 			if data.is_a?(Hash)

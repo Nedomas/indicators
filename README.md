@@ -28,7 +28,7 @@ Or install it yourself as:
 
 Then it returns data as an array with indicator values in index places:
 
-	i.e. my_data.calc(:type => :sma, :variables => 2) => [nil, 1.5, 2.5, 3.5, 4.5]
+	i.e. my_data.calc(:type => :sma, :params => 2).output => [nil, 1.5, 2.5, 3.5, 4.5]
 
 # Securities gem hash
 
@@ -38,28 +38,38 @@ Then it returns a hash so it can be quite powerful at calculating multiple stock
 
 	{"aapl"=>[nil, 675.24, 674.0600000000001], "yhoo"=>[nil, 14.785, 14.821666666666667]}
 
+## Output
+
+.calc returns an object with such accessor methods
+
+	@abbr - indicator abbreviation (usually used when displaying information).
+	@params - given or defaulted parameters.
+	@output - indicator calculation result.
+
+	i.e. @abbr="SMA", @params=2, @output=[nil, 1.5, 2.5, 3.5, 4.5]
+
 ## Supported Indicators
 
 # Simple Moving Average => :sma
 
-	my_data.calc(:type => :sma, :variables => 5)
+	my_data.calc(:type => :sma, :params => 5)
 
 #	Exponental Moving Average => :ema
 
-	my_data.calc(:type => :ema, :variables => 5)
+	my_data.calc(:type => :ema, :params => 5)
 
 # Bollinger Bands => :bb
 
-	my_data.calc(:type => :bb, :variables => [15, 3])
+	my_data.calc(:type => :bb, :params => [15, 3])
 
 Variables have to be specified as an array [periods, multiplier]. If multiplier isn't specified, it defaults to 2.
 
 	It returns output as an array for each data point [middle band, upper band, lower band].
-	i.e. my_data.calc(:type => :bb, :variables => 3) => {"aapl"=>[nil, nil, [674.65, 676.8752190903368, 672.4247809096631]]} 
+	i.e. my_data.calc(:type => :bb, :params => 3) => {"aapl"=>[nil, nil, [674.65, 676.8752190903368, 672.4247809096631]]} 
 
 # Moving Average Convergence Divergence => :macd
 
-	my_data.calc(:type => :macd, :variables => [12, 26, 9])
+	my_data.calc(:type => :macd, :params => [12, 26, 9])
 
 Variables have to be specified as an array [faster periods, slower periods, signal line]. If slower periods isn't specified, it defaults to 26 and signal line to 9.
 
@@ -67,13 +77,13 @@ Variables have to be specified as an array [faster periods, slower periods, sign
 
 # Relative Strength Index => :rsi
 
-	my_data.calc(:type => :rsi, :variables => 14)
+	my_data.calc(:type => :rsi, :params => 14)
 
 The more data it has, the more accurate RSI is.
 
 # Full Stochastic Oscillator => :sto
 
-	my_data.calc(:type => :sto, :variables => [14, 3, 5])
+	my_data.calc(:type => :sto, :params => [14, 3, 5])
 
 Variables have to be specified as an array [lookback period, the number of periods to slow %K, the number of periods for the %D moving average] => [%K1, %K2, %D].
 
@@ -81,9 +91,7 @@ Variables have to be specified as an array [lookback period, the number of perio
 
 ## To Do
 
-* Make defaults mechanism more versatile.
 * Write specs.
-* More validations.
 * A strategy backtesting tool.
 
 # Indicators:
