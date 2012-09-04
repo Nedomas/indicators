@@ -13,7 +13,7 @@ module Indicators
 			transposed_hash = Hash.new
 			# Such a hacky way to transpose an array.
 			# FIXME: Now v.to_f converts date to float, it shouldn't.
-			parameters.reverse.inject({}){|a, h| 
+			parameters.inject({}){|a, h| 
 			  h.each_pair{|k,v| (a[k] ||= []) << v.to_f}
 			  transposed_hash = a
 			}
