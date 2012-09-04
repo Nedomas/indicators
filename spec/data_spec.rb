@@ -11,7 +11,7 @@ describe Data do
 	  	expect { Indicators::Data.new('some string') }.to raise_error
 	  end
 	  it "contains dividends hash from securities gem" do
-	  	expect { Indicators::Data.new(Securities::Stock.new(["aapl"]).history(:start_date => '2012-08-01', :end_date => '2012-08-10', :periods => :dividends).results) }.to raise_error
+	  	expect { Indicators::Data.new(Securities::Stock.new(["aapl"]).history(:start_date => '2012-08-01', :end_date => '2012-08-10', :periods => :dividends)) }.to raise_error
 		end
 	end
 
@@ -20,7 +20,7 @@ describe Data do
 			expect { Indicators::Data.new([1, 2, 3]) }.not_to raise_error
 		end
 		it "is a hash" do
-			expect { Indicators::Data.new(Securities::Stock.new(["aapl"]).history(:start_date => '2012-08-01', :end_date => '2012-08-03', :periods => :daily).results) }.not_to raise_error
+			expect { Indicators::Data.new(Securities::Stock.new(["aapl"]).history(:start_date => '2012-08-01', :end_date => '2012-08-03', :periods => :daily)) }.not_to raise_error
 		end
 
 	end
