@@ -3,8 +3,7 @@ module Indicators
   class Helper
 
     # Error handling.
-    class HelperException < StandardError
-    end
+    class HelperException < StandardError ; end
 
     def self.validate_data data, column, parameters
       # If this is a hash, choose which column of values to use for calculations.
@@ -13,12 +12,6 @@ module Indicators
       else
         valid_data = data
       end
-
-      # Make output more friendly
-      # if parameters.is_a?(Array)
-      #   parameters_array = parameters
-      #   parameters = parameters.sum
-      # end
 
       if valid_data.length < parameters
         raise HelperException, "Data point length (#{valid_data.length}) must be greater than or equal to the required indicator periods (#{parameters})."
@@ -29,6 +22,7 @@ module Indicators
     # Indicators::Helper.get_parameters([12, 1, 1], 0, 15)
     def self.get_parameters parameters, i=0, default=0
 
+      # Single parameter is to choose from.
       if parameters.is_a?(Integer) || parameters.is_a?(NilClass)
 
         # Set all other to default if only one integer is given instead of an array.
@@ -40,11 +34,12 @@ module Indicators
           if default != 0
             return default
           else
-            raise HelperException, "There were no parameters specified and there is no default for it."
+            raise HelperException, 'There were no parameters specified and there is no default for it.'
           end
         else
           return parameters
         end
+      # Multiple parameters to choose from.
       elsif parameters.is_a?(Array)
         # In case array is given not like [1, 2] but like this ["1", "2"]. This usually happens when getting data from input forms.
         parameters = parameters.map(&:to_i)
@@ -52,13 +47,13 @@ module Indicators
           if default != 0
             return default
           else
-            raise HelperException, "There were no parameters specified and there is no default for it."
+            raise HelperException, 'There were no parameters specified and there is no default for it.'
           end
         else
           return parameters[i]
         end
       else
-        raise HelperException, "Parameters have to be a integer, an array or nil."
+        raise HelperException, 'Parameters have to be a integer, an array or nil.'
       end
 
     end

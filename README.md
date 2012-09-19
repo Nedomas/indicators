@@ -32,11 +32,9 @@ Then it returns data as an array with indicator values in index places:
 
 # Securities gem hash
 
-	my_data = Indicators::Data.new(Securities::Stock.new(["aapl", "yhoo"]).history(:start_date => '2012-08-25', :end_date => '2012-08-30').results)
+	my_data = Indicators::Data.new(Securities::Stock.new(:symbol => 'AAPL', :start_date => '2012-08-25', :end_date => '2012-08-30').output)
 
-Then it returns a hash so it can be quite powerful at calculating multiple stock indicators at once:
-
-	{"aapl"=>[nil, 675.24, 674.0600000000001], "yhoo"=>[nil, 14.785, 14.821666666666667]}
+	my_data.calc(:type => :sma, :params => 5)
 
 ## Output
 
@@ -91,7 +89,6 @@ Variables have to be specified as an array [lookback period, the number of perio
 
 ## To Do
 
-* Write specs.
 * A strategy backtesting tool.
 
 # Indicators:

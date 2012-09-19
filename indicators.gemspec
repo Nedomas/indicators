@@ -16,6 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = Indicators::VERSION
 
   gem.add_dependency 'rails'
-  gem.add_development_dependency 'securities'
+  gem.add_development_dependency 'securities', ">= 2.0.0", "< 3.0.0"
   gem.add_development_dependency 'rspec'
 end

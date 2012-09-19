@@ -4,8 +4,7 @@ module Indicators
 	class Parser
 
 		# Error handling.
-		class ParserException < StandardError
-		end
+		class ParserException < StandardError ; end
 
 		def self.parse_data parameters
 			
@@ -18,7 +17,7 @@ module Indicators
 			  transposed_hash = a
 			}
 		 	usable_data = transposed_hash
-		 	# usable data is are {:close => [1, 2, 3], :open => []}
+		 	# usable data is {:close => [1, 2, 3], :open => []}
 
 			return usable_data
 		end
