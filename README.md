@@ -4,7 +4,7 @@ A gem for calculating technical analysis indicators.
 
 Current functionality demo of Indicators and Securities gems synergy can be tested at http://strangemuseum.heroku.com.
 
-[![Build Status](https://secure.travis-ci.org/Nedomas/indicators.png)](http://travis-ci.org/Nedomas/indicators)
+[![Build Status](https://secure.travis-ci.org/Nedomas/indicators.png)](http://travis-ci.org/Nedomas/indicators)[![Dependency Status](https://gemnasium.com/Nedomas/indicators.png)](https://gemnasium.com/Nedomas/indicators)
 
 ## Installation
 
@@ -34,7 +34,7 @@ Then it returns data as an array with indicator values in index places:
 
 	my_data = Indicators::Data.new(Securities::Stock.new(:symbol => 'AAPL', :start_date => '2012-08-25', :end_date => '2012-08-30').output)
 
-	my_data.calc(:type => :sma, :params => 5)
+	my_data.calc(:type => :sma, :params => 3)
 
 ## Output
 
