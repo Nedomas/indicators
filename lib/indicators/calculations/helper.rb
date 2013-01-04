@@ -41,8 +41,14 @@ module Indicators
         end
       # Multiple parameters to choose from.
       elsif parameters.is_a?(Array)
-        # In case array is given not like [1, 2] but like this ["1", "2"]. This usually happens when getting data from input forms.
-        parameters = parameters.map(&:to_i)
+        # Map in case array is ["1", "2"] instead of [1, 2]. This usually happens when getting data from input forms.
+        # Specify default as Float or Int, to indicate what is expected from the param.
+        if default.is_a?(Integer)
+          parameters = parameters.map(&:to_i) 
+        elsif default.is_a?(Float)
+          parameters = parameters.map(&:to_f) 
+        end
+
         if parameters[i] == nil || parameters[i] == 0
           if default != 0
             return default
@@ -53,7 +59,7 @@ module Indicators
           return parameters[i]
         end
       else
-        raise HelperException, 'Parameters have to be a integer, an array or nil.'
+        raise HelperException, 'Parameters must be an integer, float, an array or nil.'
       end
 
     end

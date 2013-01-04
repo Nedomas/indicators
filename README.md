@@ -3,6 +3,7 @@
 A gem for calculating technical analysis indicators.
 
 Current functionality demo of Indicators and Securities gems synergy can be tested at http://strangemuseum.heroku.com.
+Securities gem: https://rubygems.org/gems/securities
 
 [![Build Status](https://secure.travis-ci.org/Nedomas/indicators.png)](http://travis-ci.org/Nedomas/indicators)[![Dependency Status](https://gemnasium.com/Nedomas/indicators.png)](https://gemnasium.com/Nedomas/indicators)
 
@@ -58,7 +59,7 @@ Then it returns data as an array with indicator values in index places:
 
 # Bollinger Bands => :bb
 
-	my_data.calc(:type => :bb, :params => [15, 3])
+	my_data.calc(:type => :bb, :params => [15, 3]) or my_data.calc(:type => :bb, :params => [15, 2.5])
 
 Variables have to be specified as an array [periods, multiplier]. If multiplier isn't specified, it defaults to 2.
 

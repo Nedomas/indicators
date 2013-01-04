@@ -18,7 +18,7 @@ module Indicators
       when :bb
         @params = Array.new
         @params << Indicators::Helper.get_parameters(all_params, 0, 20)
-        @params << Indicators::Helper.get_parameters(all_params, 1, 2)
+        @params << Indicators::Helper.get_parameters(all_params, 1, 2.0)
       when :macd
         @params = Array.new
         @params << Indicators::Helper.get_parameters(all_params, 0, 12)
