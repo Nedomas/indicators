@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'securities'
 
 describe Indicators::Data do
 
