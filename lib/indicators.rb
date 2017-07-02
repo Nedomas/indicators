@@ -1,3 +1,4 @@
+require 'active_support'
 require "indicators/version"
 require "securities"
 require "indicators/data.rb"
